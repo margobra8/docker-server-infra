@@ -1,0 +1,13 @@
+[http.middlewares.simpleAuth.basicAuth]
+  users = [
+    "zinrab:xyzBCryptHashedPassword"
+  ]
+
+[http.routers.api]
+  rule = "Host(`dash.example.com`)"
+  entrypoints = ["web","websecure"]
+  middlewares = ["simpleAuth"]
+  service = "api@internal"
+  [http.routers.api.tls]
+    certResolver = "lets-encrypt"
+
